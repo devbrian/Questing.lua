@@ -130,6 +130,7 @@ function RocketCeladonQuest:CeladonGamecornerStairs()
 	end
 end
 
+-- razor wind tm @ 9,20
 function RocketCeladonQuest:RocketHideoutB1F()
 	if game.inRectangle(17,15,25,32) then
 		if not hasItem("Lift Key") then
@@ -149,11 +150,12 @@ function RocketCeladonQuest:RocketHideoutB1F()
 		if not self:isTrainingOver() or dialogs.releaseEeveeDone.state then
 			return moveToMap("Celadon Gamecorner Stairs")
 		elseif not hasItem("Card Key") then
-			if isNpcOnCell(24,12) then
-				return talkToNpcOnCell(24,12)
-			else
+			-- /!\ unreachable pickup since 2.8.0.0
+			--if isNpcOnCell(24,12) then
+			--	return talkToNpcOnCell(24,12)
+			--else
 				return moveToMap("Rocket Hideout B2F")
-			end
+			--end
 		else
 			if dialogs.releaseEeveeDone.state or (self.b3f_ReceptorDone and self.b4f_ReceptorDone) then
 				return moveToMap("Celadon Gamecorner Stairs")

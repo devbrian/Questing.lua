@@ -112,8 +112,15 @@ function team.getLowestPkmAlive()
     return team._compare(team.getAlivePkm(), gen.minLvl)
 end
 
+--- @summary :
+--- @return : lowest level pokemon | nil if empty team
+--- @type : integer | nil
 function team.getLowestLvl()
-    return getPokemonLevel(team.getLowestLvlPkm())
+    local lowestLvlPkm = team.getLowestLvlPkm()
+    if lowestLvlPkm then
+        return getPokemonLevel(lowestLvlPkm)
+    end
+    return nil
 end
 
 function team.getPkm()
@@ -169,7 +176,7 @@ function team.getLastPkmWithItem(itemName)
     return gen.last(team.getPkmWithItem(itemName))
 end
 
---- @summary : provides couverage for proShine's unused attacks
+--- @summary : provides coverage for proShine's unused attacks
 function team.getUsablePkm()
     return team._filter(team.getPkm(), isPokemonUsable, itemName)
 end

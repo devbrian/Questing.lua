@@ -21,7 +21,7 @@ function Quest:new(name, description, level, dialogs)
 	o.dialogs     = dialogs
 	o.training    = true
 	o.canRun	  = true
-	o.canSwitch   = true
+	o.canSwitch   = true 
 	return o
 end
 
@@ -218,7 +218,8 @@ local moonStoneTargets = {
 function Quest:evolvePokemon()
 	-- some buffer levels, to ensure every teammember is fully evolved when figthing e4
 	-- some leeway for indiviudal quest caps: Kanto e4 is started with lv 95, so evolving could start at 93
-	if team.getLowestLvl() >= 90 then enableAutoEvolve() end
+	local lowestLvl = team.getLowestLvl()
+	if lowestLvl and lowestLvl >= 90 then enableAutoEvolve() end
 	-- or team.getHighestLvl() >= 93 --not leveling mixed teams efficiently: lv 38, ...., lv 93
 
 	local hasMoonStone = hasItem("Moon Stone")
@@ -248,9 +249,13 @@ function Quest:sortInMemory()
 	if highestAlivePkm ~= lastPkm then return swapPokemon(highestAlivePkm, lastPkm) end
 end
 
+function Quest:relog()
+
+end
 
 function Quest:path()
 	if self:evolvePokemon() then 	return true end
+	if self:relog() then			return true end
 	if self:sortInMemory() then 	return true end
 	if self:leftovers() then 		return true end
 	if self:useBike() then 			return true end

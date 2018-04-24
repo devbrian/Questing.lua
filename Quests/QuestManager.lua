@@ -143,6 +143,7 @@ function QuestManager:new(o)
 	o.quests = quests
 	o.selected = nil
 	o.isOver = false
+	o.lastRelog = os.time()
 	return o
 end
 
@@ -197,6 +198,14 @@ end
 function QuestManager:path()
 	if not self:updateQuest() then
 		return false
+	end
+	-- only relog during training sessions to avoid
+	-- weird continuity errors that might occur
+	if not self.selected:isTrainingOver() 
+		and os.difftime(os.time(), self.lastRelog) > 60*60*RELOG_TIME
+	then
+		relog(1, "Relogging...")
+		self.lastRelog = os.time()
 	end
 	return self.selected:path()
 end

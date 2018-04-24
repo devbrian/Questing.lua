@@ -4,7 +4,7 @@
 -- as published by Sam Hocevar. See the COPYING file for more details.
 
 name = "Questing"
-author = "g0ld, wiwi33, m1l4"
+author = "g0ld, wiwi33, m1l4, dubscheckum"
 description = [[MainQuesting until end of Hoenn region.]]
 
 dofile "config.lua"
@@ -25,6 +25,7 @@ function onStart()
 	end
 
 	--disable AutoEvolve for reduced exp needed to lvl up
+	log("AutoEvolve disabled.")
 	disableAutoEvolve()
 end
 
@@ -41,7 +42,7 @@ end
 function onPathAction()
 	questManager:path()
 	if questManager.isOver then
-		return fatal("No more quest to do. Script terminated.")
+		return fatal("No more quests to do. Script terminated.")
 	end
 end
 
