@@ -51,7 +51,7 @@ local StormBadgeQuest     = require('Quests/Johto/StormBadgeQuest')
 local MineralBadgeQuest	  = require('Quests/Johto/MineralBadgeQuest')
 local GlacierBadgeQuest	  = require('Quests/Johto/GlacierBadgeQuest')
 local RisingBadgeQuest	  = require('Quests/Johto/RisingBadgeQuest')
-local Elite4Johto	  = require('Quests/Johto/Elite4Johto')
+local Elite4Johto		  = require('Quests/Johto/Elite4Johto')
 
 --Hoenn
 local FromLittlerootToWoodsQuest = require('Quests/Hoenn/FromLittlerootToWoodsQuest')

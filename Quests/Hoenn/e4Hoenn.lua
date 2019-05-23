@@ -1,4 +1,4 @@
--- Copyright © 2016 g0ld <g0ld@tuta.io>
+-- Copyright ï¿½ 2016 g0ld <g0ld@tuta.io>
 -- This work is free. You can redistribute it and/or modify it under the
 -- terms of the Do What The Fuck You Want To Public License, Version 2,
 -- as published by Sam Hocevar. See the COPYING file for more details.
@@ -65,7 +65,8 @@ end
 function templatequest:SootopolisCityGym1F()
 	if game.inRectangle(22,39,22,39) then
 		moveToCell(21,39)
-	else moveToMap("Sootopolis City")
+	else 
+		moveToMap("Sootopolis City")
 	end
 end
 
@@ -73,30 +74,30 @@ function templatequest:SootopolisCity()
 	if self:needPokecenter() or self.registeredPokecenter ~= "Pokecenter Sootopolis City" then
 		moveToMap("Pokecenter Sootopolis City")
 	else if hasMove(1, "Dive") then
-			pushDialogAnswer(1)
-			pushDialogAnswer(1)
-			moveToCell(50,91)
-		elseif hasMove(2, "Dive") then
-			pushDialogAnswer(1)
-			pushDialogAnswer(2)
-			moveToCell(50,91)
-		elseif hasMove(3, "Dive") then
-			pushDialogAnswer(1)
-			pushDialogAnswer(3)
-			moveToCell(50,91)
-		elseif hasMove(4, "Dive") then
-			pushDialogAnswer(1)
-			pushDialogAnswer(4)
-			moveToCell(50,91)
-			elseif hasMove(5, "Dive") then
-			pushDialogAnswer(1)
-			pushDialogAnswer(5)
-			moveToCell(50,91)
-		elseif hasMove(6, "Dive") then
-			pushDialogAnswer(1)
-			pushDialogAnswer(6)
-			moveToCell(50,91)
-		end
+		pushDialogAnswer(1)
+		pushDialogAnswer(1)
+		moveToCell(50,91)
+	elseif hasMove(2, "Dive") then
+		pushDialogAnswer(1)
+		pushDialogAnswer(2)
+		moveToCell(50,91)
+	elseif hasMove(3, "Dive") then
+		pushDialogAnswer(1)
+		pushDialogAnswer(3)
+		moveToCell(50,91)
+	elseif hasMove(4, "Dive") then
+		pushDialogAnswer(1)
+		pushDialogAnswer(4)
+		moveToCell(50,91)
+	elseif hasMove(5, "Dive") then
+		pushDialogAnswer(1)
+		pushDialogAnswer(5)
+		moveToCell(50,91)
+	elseif hasMove(6, "Dive") then
+		pushDialogAnswer(1)
+		pushDialogAnswer(6)
+		moveToCell(50,91)
+	end
 	end
 end
 
@@ -106,30 +107,30 @@ end
 
 function templatequest:Route126Underwater()
 	if hasMove(1, "Dive") then
-			pushDialogAnswer(1)
-			pushDialogAnswer(1)
-			moveToCell(15,71)
-		elseif hasMove(2, "Dive") then
-			pushDialogAnswer(1)
-			pushDialogAnswer(2)
-			moveToCell(15,71)
-		elseif hasMove(3, "Dive") then
-			pushDialogAnswer(1)
-			pushDialogAnswer(3)
-			moveToCell(15,71)
-		elseif hasMove(4, "Dive") then
-			pushDialogAnswer(1)
-			pushDialogAnswer(4)
-			moveToCell(15,71)
-			elseif hasMove(5, "Dive") then
-			pushDialogAnswer(1)
-			pushDialogAnswer(5)
-			moveToCell(15,71)
-		elseif hasMove(6, "Dive") then
-			pushDialogAnswer(1)
-			pushDialogAnswer(6)
-			moveToCell(15,71)
-		end
+		pushDialogAnswer(1)
+		pushDialogAnswer(1)
+		moveToCell(15,71)
+	elseif hasMove(2, "Dive") then
+		pushDialogAnswer(1)
+		pushDialogAnswer(2)
+		moveToCell(15,71)
+	elseif hasMove(3, "Dive") then
+		pushDialogAnswer(1)
+		pushDialogAnswer(3)
+		moveToCell(15,71)
+	elseif hasMove(4, "Dive") then
+		pushDialogAnswer(1)
+		pushDialogAnswer(4)
+		moveToCell(15,71)
+	elseif hasMove(5, "Dive") then
+		pushDialogAnswer(1)
+		pushDialogAnswer(5)
+		moveToCell(15,71)
+	elseif hasMove(6, "Dive") then
+		pushDialogAnswer(1)
+		pushDialogAnswer(6)
+		moveToCell(15,71)
+	end
 end
 
 function templatequest:Route126()
@@ -150,11 +151,13 @@ function templatequest:EverGrandeCity()
 			moveToMap("Pokecenter Ever Grande City")
 		elseif isNpcOnCell(27,57) then
 			talkToNpcOnCell(27,57)
-		else moveToMap("Victory Road Hoenn 1F")
+		else 
+			moveToMap("Victory Road Hoenn 1F")
 		end
 	elseif isNpcOnCell(30,35) then
 		talkToNpcOnCell(30,35)
-	else moveToMap("Pokemon League Hoenn")
+	else 
+		moveToMap("Pokemon League Hoenn")
 	end
 end
 
@@ -165,7 +168,8 @@ end
 function templatequest:VictoryRoadHoenn1F()
 	if game.inRectangle(4,16,24,54) then
 		moveToCell(9,17)
-	else moveToMap("Ever Grande City")
+	else 
+		moveToMap("Ever Grande City")
 	end
 end
 
@@ -178,14 +182,14 @@ function templatequest:PokemonLeagueHoenn()
 		talkToNpcOnCell(4,22)
 	end
 	if not isTeamSortedByLevelAscending() then
-			sortTeamByLevelAscending()
+		sortTeamByLevelAscending()
 	elseif getPokemonLevel(1) < 96 and not beastteam then
 		if isPCOpen() then
 			if isCurrentPCBoxRefreshed() then
 				if getCurrentPCBoxSize() ~= 0 then
 					for pokemon=1, getCurrentPCBoxSize() do
 						if getPokemonLevelFromPC(getCurrentPCBoxId(), pokemon) > 95 then
-						return swapPokemonFromPC(getCurrentPCBoxId(),pokemon,1) 	
+							return swapPokemonFromPC(getCurrentPCBoxId(),pokemon,1) 	
 						end
 					end
 					return openPCBox(getCurrentPCBoxId()+1)
@@ -211,9 +215,9 @@ function templatequest:PokemonLeagueHoenn()
 				return buyItem("Hyper Potion", (self.qnt_hyperpot - getItemQuantity("Hyper Potion")))
 			end
 		end
-	else moveToCell(10,3)
+	else 
+		moveToCell(10,3)
 	end
-		
 end
 
 function templatequest:PokecenterSootopolisCity()

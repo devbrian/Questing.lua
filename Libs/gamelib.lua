@@ -27,6 +27,7 @@ function game.isPokemonFullPP(pokemonId)
 	return true
 end
 
+-- obsolete since 2.8.0.0; use global useAnyMove() instead
 function game.useAnyMove()
 	sys.debug("game.useAnyMove()", "start", true)
 	local pokemonId = getActivePokemonNumber()
@@ -158,6 +159,13 @@ function game.getPokemonIdWithItem(ItemName)
 		end
 	end
 	return 0
+end
+
+function game.pickupItem(x, y)
+	if isNpcOnCell(x,y) then
+		return talkToNpcOnCell(x,y)
+	end
+	return false
 end
 	
 return game

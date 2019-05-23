@@ -104,6 +104,10 @@ function team.getHighestPkmAlive()
     return team._compare(team.getAlivePkm(), gen.maxLvl)
 end
 
+function team.getHighestLvlPkm()
+    return team._compare(team.getPkm(), gen.maxLvl)
+end
+
 function team.getLowestLvlPkm()
     return team._compare(team.getPkm(), gen.minLvl)
 end
@@ -119,6 +123,17 @@ function team.getLowestLvl()
     local lowestLvlPkm = team.getLowestLvlPkm()
     if lowestLvlPkm then
         return getPokemonLevel(lowestLvlPkm)
+    end
+    return nil
+end
+
+--- @summary :
+--- @return : highest level pokemon | nil if empty team
+--- @type : integer | nil
+function team.getHighestLvl()
+    local highestLvlPkm = team.getHighestLvlPkm()
+    if highestLvlPkm then
+        return getPokemonLevel(highestLvlPkm)
     end
     return nil
 end

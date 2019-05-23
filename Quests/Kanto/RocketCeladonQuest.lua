@@ -119,13 +119,13 @@ function RocketCeladonQuest:CeladonGamecornerStairs()
 		if isNpcOnCell(13,3) then
 			return talkToNpcOnCell(13,3)
 		else
-			return moveToMap("Rocket Hideout B1F")
+			return moveToCell(14, 3)--moveToMap("Rocket Hideout B1F")
 		end
 	else
 		if dialogs.releaseEeveeDone.state or (self.b3f_ReceptorDone and self.b4f_ReceptorDone) then
 			return moveToMap("Celadon City")
 		else
-			return moveToMap("Rocket Hideout B1F")
+			return moveToCell(14, 3)--moveToMap("Rocket Hideout B1F")
 		end
 	end
 end
@@ -148,19 +148,19 @@ function RocketCeladonQuest:RocketHideoutB1F()
 			return moveToCell(13,38)
 	elseif game.inRectangle(1,3,24,14) or game.inRectangle(9,15,15,22) then
 		if not self:isTrainingOver() or dialogs.releaseEeveeDone.state then
-			return moveToMap("Celadon Gamecorner Stairs")
+			return moveToCell(9, 4)--moveToMap("Celadon Gamecorner Stairs")
 		elseif not hasItem("Card Key") then
 			-- /!\ unreachable pickup since 2.8.0.0
 			--if isNpcOnCell(24,12) then
 			--	return talkToNpcOnCell(24,12)
 			--else
-				return moveToMap("Rocket Hideout B2F")
+				return moveToCell(16, 4)--moveToMap("Rocket Hideout B2F")
 			--end
 		else
 			if dialogs.releaseEeveeDone.state or (self.b3f_ReceptorDone and self.b4f_ReceptorDone) then
-				return moveToMap("Celadon Gamecorner Stairs")
+				return moveToCell(9, 4)--moveToMap("Celadon Gamecorner Stairs")
 			else
-				return moveToMap("Rocket Hideout B2F")
+				return moveToCell(16, 4)--moveToMap("Rocket Hideout B2F")
 			end
 		end
 	end 
@@ -203,9 +203,9 @@ function RocketCeladonQuest:RocketHideoutB2F()
 		self.TrashBin_Iron = true
 		return talkToNpcOnCell(28,21)
 	elseif not hasItem("Card Key") then
-		return moveToMap("Rocket Hideout B3F")
+		return moveToCell(23, 4)--moveToMap("Rocket Hideout B3F")
 	elseif not dialogs.passwordNeeded.state and not dialogs.releaseEeveeDone.state and not self.b3f_ReceptorDone then
-		return moveToMap("Rocket Hideout B3F")
+		return moveToCell(23, 4)--moveToMap("Rocket Hideout B3F")
 	elseif dialogs.passwordNeeded.state or (self.b3f_ReceptorDone and not self.b4f_ReceptorDone) then
 		return moveToRectangle(31, 19, 31, 20) -- AntiStuck Elevator
 	elseif dialogs.releaseEeveeDone.state or (self.b3f_ReceptorDone and self.b4f_ReceptorDone) then
@@ -219,13 +219,13 @@ function RocketCeladonQuest:RocketHideoutB3F()
 	if isNpcOnCell(15,22) then
 		return talkToNpcOnCell(15,22)
 	elseif not hasItem("Card Key") then
-		return moveToMap("Rocket Hideout B4F")
+		return moveToCell(14, 22)--moveToMap("Rocket Hideout B4F")
 	elseif isNpcOnCell(19,6) then
 		return talkToNpcOnCell(19,6)
 	elseif isNpcOnCell(18,15) then
 		return talkToNpcOnCell(18,15)
 	elseif dialogs.passwordNeeded.state or (dialogs.releaseEeveeDone.state or self.b3f_ReceptorDone) then
-		return moveToMap("Rocket Hideout B2F")
+		return moveToCell(19, 4)--moveToMap("Rocket Hideout B2F")
 	else
 		if not self.b3f_ReceptorDone and hasItem("Silph Scope") then
 			if not dialogs.releaseEeveeDone.state then

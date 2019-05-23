@@ -48,22 +48,22 @@ function SSAnneQuest:isDoable()
 end
 
 function SSAnneQuest:SSAnneBasement()
-	return moveToMap("SSAnne 1F")
+	return moveToCell(27, 4)--moveToMap("SSAnne 1F")
 end
 
 function SSAnneQuest:SSAnne2FRoom6()
 	if dialogs.PharmacistWorking.state then
-		return moveToMap("SSAnne 2F")
+		return moveToCell(5, 11)--moveToMap("SSAnne 2F")
 	else
 		return talkToNpcOnCell(9,9)
 	end
 end
 
 function SSAnneQuest:SSAnne2FCaptainRoom()
-	if hasItem("SecretPotion") and not hasItem("HM01 - Cut") then
+	if hasItem("Secret Potion") and not hasItem("HM01 - Cut") then
 		return talkToNpcOnCell(5,4)
 	else
-		return moveToMap("SSAnne 2F")
+		return moveToCell(2, 11)--moveToMap("SSAnne 2F")
 	end
 end
 
@@ -97,30 +97,30 @@ function SSAnneQuest:BallroomSSAnne()
 			return talkToNpcOnCell(2, 20)
 		end
 	else
-		return moveToMap("SSAnne 3F")
+		return moveToCell(22, 12)--moveToMap("SSAnne 3F")
 	end
 end
 
 function SSAnneQuest:SSAnne3F()
-	if not hasItem("SecretPotion") then
+	if not hasItem("Secret Potion") then
 		if not hasItem("HM01 - Cut") then
-			return moveToMap("Ballroom SS Anne")
+			return moveToCell(6, 7)--moveToMap("Ballroom SS Anne")
 		end
 	else
-		return moveToMap("SSAnne 2F")
+		return moveToCell(27, 4)--moveToMap("SSAnne 2F")
 	end
 end
 
 function SSAnneQuest:SSAnne2F()
-	if hasItem("SecretPotion") then
+	if hasItem("Secret Potion") then
 		if isNpcOnCell(26, 4) then
 			return talkToNpcOnCell(26,4)
 		else
-			return moveToMap("SSAnne 2F Captain Room")
+			return moveToCell(27, 4)--moveToMap("SSAnne 2F Captain Room")
 		end
 	elseif not hasItem("HM01 - Cut") then
 		if dialogs.PharmacistWorking.state then
-			return moveToMap("SSAnne 3F")
+			return moveToCell(2, 17)--moveToMap("SSAnne 3F")
 		else
 			if isNpcOnCell(28, 18) and not self.trashBinLeftovers then -- Item: LeftOvers
 				if not dialogs.TrashBinCheck.state then
@@ -131,35 +131,35 @@ function SSAnneQuest:SSAnne2F()
 					return
 				end
 			else
-				return moveToMap("SSAnne 2F Room6")
+				return moveToCell(22, 15)--moveToMap("SSAnne 2F Room6")
 			end
 		end
 	else
-		return moveToMap("SSAnne 1F")
+		return moveToCell(4, 4)--moveToMap("SSAnne 1F")
 	end
 end
 
 function SSAnneQuest:SSAnne1F()
-	if hasItem("SecretPotion") then
-		return moveToMap("SSAnne 2F")
+	if hasItem("Secret Potion") then
+		return moveToCell(2, 11)--moveToMap("SSAnne 2F")
 	elseif not hasItem("HM01 - Cut") then
 		if dialogs.RegisterTicketDone.state then
 			if dialogs.NeedPharmacist.state or dialogs.KitchenDone.state then
-				return moveToMap("SSAnne 2F")
+				return moveToCell(2, 11)--moveToMap("SSAnne 2F")
 			else
-				return moveToMap("SSAnne 1F Kitchen")
+				return moveToCell(2, 19)--moveToMap("SSAnne 1F Kitchen")
 			end
 		else
 			return talkToNpcOnCell(16,3)
 		end
 	else
-		return moveToMap("Vermilion City")
+		return moveToCell(15, 2)--moveToMap("Vermilion City")
 	end
 end
 
 function SSAnneQuest:SSAnne1FKitchen()
 	if dialogs.NeedPharmacist.state or dialogs.KitchenDone.state then
-		return moveToMap("SSAnne 1F")
+		return moveToCell(7, 2)--moveToMap("SSAnne 1F")
 	else
 		-- GET ITEMS CHECK
 		if isNpcOnCell(14, 7) and not self.trashBin1Kitchen then -- Item: Great Ball
@@ -204,7 +204,7 @@ function SSAnneQuest:SSAnneBasementRoom5()
 			return talkToNpcOnCell(5, 10)
 		end
 	else
-		return moveToMap("SSAnne Basement")
+		return moveToCell(5, 11)--moveToMap("SSAnne Basement")
 	end
 end
 

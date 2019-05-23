@@ -23,9 +23,10 @@ end
 
 function StartQuest:Start()
 	if isNpcOnCell(21,38) then
-		return talkToNpcOnCell(21,38)
+		talkToNpcOnCell(21,38)
+	else
+		moveToCell(26,87)
 	end
-	return moveToCell(26,87)
 end
 
 return StartQuest

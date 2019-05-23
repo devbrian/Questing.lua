@@ -65,6 +65,8 @@ function RainbowBadgeQuest:CeladonCity()
 		return talkToNpcOnCell(58,51)
 	elseif isNpcOnCell(50,55) then --Item: 5x Ultra Balls
 		return talkToNpcOnCell(50,55)
+	elseif isNpcOnCell(36,51) then --Item: PP UP
+		return talkToNpcOnCell(36,51)
 	elseif not game.hasPokemonWithMove("Cut") then
 		if self.pokemonId <= getTeamSize() then					
 			useItemOnPokemon("HM01 - Cut", self.pokemonId)
@@ -153,7 +155,7 @@ end
 function RainbowBadgeQuest:CeladonMart6()
 	if not hasItem("Lemonade") then
 		if not isShopOpen() then
-			return talkToNpcOnCell(15, 7)
+			return talkToNpcOnCell(12, 3)
 		else
 			if getMoney() > 1000 then
 				return buyItem("Lemonade", 5)

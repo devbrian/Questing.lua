@@ -84,10 +84,13 @@ end
 
 function ExpForSaffronQuest:SeafoamB4F()
 	--Item: Nugget (15000 Money)
-	if isNpcOnCell(57,20) then return talkToNpcOnCell(57,20) end
+	if isNpcOnCell(57,20) then 
+		return talkToNpcOnCell(57,20) 
+	end
 	--moving to ladder, to leave level
 	if self:isFinishedFarming() then
-		return moveToCell(53,28) end
+		return moveToCell(53,28) 
+	end
 
 	if self:needPokecenter() then
 		-- use on road nurse only if you have the money
@@ -101,7 +104,8 @@ function ExpForSaffronQuest:SeafoamB4F()
 	end
 
 	--else farm / provoke feinting
-	return moveToRectangle(50,10,62,32)
+	--return moveToRectangle(50,10,62,32)
+	return moveToNormalGround() -- doesn't cause "no action executed" after healing
 end
 
 return ExpForSaffronQuest

@@ -44,7 +44,7 @@ function RockTunnelQuest:Route10()
 		if self:needPokecenter() or not game.isTeamFullyHealed() or self.registeredPokecenter ~= "Pokecenter Route 10" then
 			return moveToMap("Pokecenter Route 10")
 		else
-			return moveToMap("Link")
+			return moveToMap("Rock Tunnel 1")
 		end
 	else
 		return moveToMap("Lavender Town")

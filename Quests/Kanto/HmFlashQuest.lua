@@ -104,8 +104,7 @@ function HmFlashQuest:CeruleanCity()
 	if not hasItem("HM05 - Flash") then
 		return moveToMap("Route 5")
 	else
-		--PRO did again update a bad link Name to source code :/
-		return moveToMap("Link")
+		return moveToMap("Route 9")
 	end
 end
 

@@ -4,7 +4,7 @@
 -- as published by Sam Hocevar. See the COPYING file for more details.
 
 name = "Questing"
-author = "g0ld, wiwi33, m1l4, dubscheckum"
+author = "g0ld, rympex, wiwi33, m1l4, dubscheckum"
 description = [[MainQuesting until end of Hoenn region.]]
 
 dofile "config.lua"

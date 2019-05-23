@@ -114,7 +114,7 @@ function SoulBadgeQuest:randomZoneExp()
 		if game.inRectangle(89,14,91,18) then--Zone 4
 			return moveToGrass()
 		else
-			return moveToCell(90,16)
+			return moveToCell(89,14)
 		end
 	end
 end

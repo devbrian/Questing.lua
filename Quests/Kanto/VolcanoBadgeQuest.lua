@@ -7,6 +7,7 @@
 
 local sys    = require "Libs/syslib"
 local game   = require "Libs/gamelib"
+local team   = require "Libs/teamlib"
 local Quest  = require "Quests/Quest"
 local Dialog = require "Quests/Dialog"
 
@@ -145,11 +146,18 @@ function VolcanoBadgeQuest:SeafoamB4F()
 				    return moveToRectangle(50,10,62,32)
 				end
 			end
+		elseif team.getHighestLvl() >= (self.level - 3) and not isAutoEvolve() then
+			-- so we can beat Giovanni
+			enableAutoEvolve()
+			return self:useMoonStones()
 		else
-			return moveToRectangle(50,10,62,32)
+			--using this instead of moveToRectangle seems to fix
+			--the "no action after healing" error :s
+			--but it will occasionally move to a link
+			return moveToNormalGround() --moveToRectangle(50,10,62,32)
 		end
 	else
-		return moveToCell(53,28)
+		return moveToCell(53,28) -- Link: Seafoam B3F
 	end
 end
 

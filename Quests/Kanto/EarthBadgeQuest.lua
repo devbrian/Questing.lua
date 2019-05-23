@@ -7,6 +7,7 @@
 
 local sys    = require "Libs/syslib"
 local game   = require "Libs/gamelib"
+local team   = require "Libs/teamlib"
 local Quest  = require "Quests/Quest"
 local Dialog = require "Quests/Dialog"
 
@@ -86,6 +87,7 @@ function EarthBadgeQuest:ViridianCity()
 	elseif hasItem("Earth Badge") then
 		return moveToMap("Route 22")
 	elseif not self:isTrainingOver() then
+		sys.todo("go and evolve pokemon instead of fataling")
 		return fatal("Error This team can't beat Giovanni")
 	else
 		return moveToCell(60,22) --Viridian Gym 2

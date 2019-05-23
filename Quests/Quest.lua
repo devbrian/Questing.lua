@@ -11,10 +11,11 @@ local blacklist = require "blacklist"
 
 local Quest = {}
 
+-- the base class of all quests
 function Quest:new(name, description, level, dialogs)
 	local o = {}
 	setmetatable(o, self)
-	self.__index     = self
+	self.__index  = self
 	o.name        = name
 	o.description = description
 	o.level       = level or 1
@@ -52,7 +53,7 @@ end
 
 function Quest:pokecenter(exitMapName) -- idealy make it work without exitMapName
 	self.registeredPokecenter = getMapName()
-	sys.todo("add a moveDown() or moveToNearestLink() or getLinks() to PROShine")
+	--sys.todo("add a moveDown() or moveToNearestLink() or getLinks() to PROShine")
 	if not game.isTeamFullyHealed() then
 		return usePokecenter()
 	end
@@ -91,11 +92,14 @@ function Quest:pokemart(exitMapName)
 --		return buyItem("Escape Rope", ropesToBuy)
 
 	--if nothing to buy, leave mart
-	else return moveToMap(exitMapName) end
+	else 
+		return moveToMap(exitMapName) 
+	end
 end
 
 function Quest:isTrainingOver()
-	if team.getLowestLvl() >= self.level then
+	local lowestLvl = team.getLowestLvl()
+	if lowestLvl and lowestLvl >= self.level then
 		if self.training then -- end the training
 			self:stopTraining()
 		end
@@ -182,7 +186,10 @@ end
 
 function Quest:needPokecenter()
 	if getTeamSize() == 1 then
-		if getPokemonHealthPercent(1) <= 50 then return true end
+		-- to avoid blacking out
+		if getPokemonHealthPercent(1) <= 50 then 
+			return true 
+		end
 
 	-- else we would spend more time evolving the higher level ones
 	elseif not self:isTrainingOver() then
@@ -222,6 +229,10 @@ function Quest:evolvePokemon()
 	if lowestLvl and lowestLvl >= 90 then enableAutoEvolve() end
 	-- or team.getHighestLvl() >= 93 --not leveling mixed teams efficiently: lv 38, ...., lv 93
 
+	return self:useMoonStones()
+end
+
+function Quest:useMoonStones()
 	local hasMoonStone = hasItem("Moon Stone")
 	for pokemonId=1, getTeamSize(), 1 do
 		local pokemonName = getPokemonName(pokemonId)
@@ -249,13 +260,8 @@ function Quest:sortInMemory()
 	if highestAlivePkm ~= lastPkm then return swapPokemon(highestAlivePkm, lastPkm) end
 end
 
-function Quest:relog()
-
-end
-
 function Quest:path()
 	if self:evolvePokemon() then 	return true end
-	if self:relog() then			return true end
 	if self:sortInMemory() then 	return true end
 	if self:leftovers() then 		return true end
 	if self:useBike() then 			return true end
@@ -289,7 +295,11 @@ function Quest:battle()
 				and getOpponentName() == self.pokemon
 				and self.forceCaught ~= nil
 				and self.forceCaught == false))
-	then if useItem("Pokeball") or useItem("Great Ball") or useItem("Ultra Ball") then return true end end
+	then 
+		if useItem("Pokeball") or useItem("Great Ball") or useItem("Ultra Ball") then 
+			return true 
+		end 
+	end
 
 	--fighting
 	local isTeamUsable = getTeamSize() == 1 --if it's our starter, it has to atk
@@ -302,19 +312,22 @@ function Quest:battle()
 			and self.canSwitch
 		then
 			local requestedId, requestedLevel = game.getMaxLevelUsablePokemon()
-			if requestedLevel > myPokemonLvl
-				and requestedId ~= nil
-			then return sendPokemon(requestedId) end
+			if requestedLevel > myPokemonLvl and requestedId ~= nil	then 
+				return sendPokemon(requestedId) 
+			end
 		end
 
 		--actual battle
 		if 	attack() 									--atk
 			or self.canSwitch and sendUsablePokemon()	--switch in battle ready pkm if able
-			or self.canRun and run()					--run if able
 			or self.canSwitch and sendAnyPokemon()		--switch in any alive pkm if able
-			or game.useAnyMove()						--use none damaging moves, to progress battle round
-		then return sys.debug("fighting team", "battle action performed")
-		else return sys.error("quest.battle", "no battle action for a fighting team") end
+			or self.canRun and run()					--run if able
+			or useAnyMove()								--use none damaging moves, to progress battle round
+		then 
+			return sys.debug("fighting team", "battle action performed")
+		else 
+			return sys.error("quest.battle", "no battle action for a fighting team") 
+		end
 	end
 
 	-- running
@@ -322,9 +335,12 @@ function Quest:battle()
 		or attack()                                 --2. we try to attack
 		or self.canSwitch and sendUsablePokemon()  	--3. we try to switch pokemon that has pp
 		or self.canSwitch and sendAnyPokemon()     	--4. we try to switch to any pokemon alive
-		or game.useAnyMove()                     	--5. we try to use non-damaging attack
+		or useAnyMove()			                  	--5. we try to use non-damaging attack
 		--or BattleManager.useAnyAction()             --6. we try to use garbage items
-	then return end sys.debug("running team", "battle action performed")
+	then 
+		return 
+	end 
+	sys.debug("running team", "battle action performed")
 	sys.error("quest.battle", "no battle action for a running team")
 
 end
@@ -405,9 +421,16 @@ function Quest:chooseForgetMove(moveName, pokemonIndex) -- Calc the WrostAbility
 	local ForgetMoveTP = 9999
 	for moveId=1, 4, 1 do
 		local MoveName = getPokemonMoveName(pokemonIndex, moveId)
-		if MoveName == nil or MoveName == "cut" or MoveName == "surf" or MoveName == "rock smash" or MoveName == "dive" or (MoveName == "sleep powder" and not hasItem("Plain Badge")) then
+		if MoveName == nil 
+			or MoveName == "cut" 
+			or MoveName == "surf" 
+			or MoveName == "rock smash" 
+			or MoveName == "dive" 
+			or (MoveName == "sleep powder" and not hasItem("Plain Badge")) 
+		then
+			-- ???
 		else
-		local CalcMoveTP = math.modf((getPokemonMaxPowerPoints(pokemonIndex,moveId) * getPokemonMovePower(pokemonIndex,moveId))*(math.abs(getPokemonMoveAccuracy(pokemonIndex,moveId)) / 100))
+			local CalcMoveTP = math.modf((getPokemonMaxPowerPoints(pokemonIndex,moveId) * getPokemonMovePower(pokemonIndex,moveId))*(math.abs(getPokemonMoveAccuracy(pokemonIndex,moveId)) / 100))
 			if CalcMoveTP < ForgetMoveTP then
 				ForgetMoveTP = CalcMoveTP
 				ForgetMoveName = MoveName

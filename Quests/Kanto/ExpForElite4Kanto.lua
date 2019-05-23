@@ -17,7 +17,10 @@ local level = 96
 local dialogs = {
 	leagueKantoNotDone = Dialog:new({ 
 		"you are not ready to go to johto yet"
-	})
+	}),
+	-- leagueKantoDone = Dialog:new({
+	-- 	"I am already the champ, don't need to go in there..."
+	-- })
 }
 
 local ExpForElite4Kanto = Quest:new()

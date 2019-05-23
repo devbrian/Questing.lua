@@ -38,10 +38,7 @@ function PalletStartQuest:new()
 end
 
 function PalletStartQuest:isDoable()
-	if not hasItem("Boulder Badge") and self:hasMap() then
-		return true
-	end
-	return false
+	return not hasItem("Boulder Badge") and self:hasMap() 
 end
 
 function PalletStartQuest:isDone()
@@ -50,17 +47,18 @@ end
 
 function PalletStartQuest:PlayerBedroomPallet()
 	if getTeamSize() == 0 or hasItem("Pokeball") then
-		return moveToMap("Player House Pallet")
+		-- moveToMap("Player House Pallet")
 	else
 		if isNpcOnCell(7,3) then
-			return talkToNpcOnCell(7,3)
+			talkToNpcOnCell(7,3)
 		elseif isNpcOnCell(6,3) then
-			return talkToNpcOnCell(6,3)
+			talkToNpcOnCell(6,3)
 		else
 			error("No Pokeball in 'Player Bedroom Pallet' nor in bag")
 		end
 	end
 end
+
 
 function PalletStartQuest:PlayerHousePallet()
 	if getTeamSize() == 0 or hasItem("Pokeball") then
@@ -122,7 +120,7 @@ function PalletStartQuest:OaksLab()
 		if not hasItem("Pokedex") then
 			return talkToNpcOnCell(7,4) -- Oak
 		else
-			return moveToMap("Link")
+			return moveToMap("Pallet Town")
 		end
 	end
 end

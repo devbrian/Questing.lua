@@ -22,4 +22,4 @@ DISABLE_PM = true               -- true: private messaging will be disabled, fal
 RELOG_TIME = 1                  -- bot will relog every RELOG_TIME hours
 
 DEBUG = false                   -- printing debug comments
-TODO = false                    -- printing todo comments
+TODO = true                    -- printing todo comments
