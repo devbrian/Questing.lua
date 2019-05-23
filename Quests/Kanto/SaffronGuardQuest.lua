@@ -198,7 +198,7 @@ function SaffronGuardQuest:Route6()
 end
 
 function SaffronGuardQuest:Route6StopHouse()
-	return moveToMap("Link")
+	return moveToMap("Saffron City")
 end
 
 return SaffronGuardQuest

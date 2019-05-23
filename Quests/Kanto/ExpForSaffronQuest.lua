@@ -104,8 +104,8 @@ function ExpForSaffronQuest:SeafoamB4F()
 	end
 
 	--else farm / provoke feinting
-	--return moveToRectangle(50,10,62,32)
-	return moveToNormalGround() -- doesn't cause "no action executed" after healing
+	return --moveToRectangle(50,10,62,32)
+	       moveToNormalGround() -- preferred because it doesn't cause "no action executed" after healing
 end
 
 return ExpForSaffronQuest
