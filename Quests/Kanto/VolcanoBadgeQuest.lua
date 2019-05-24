@@ -67,8 +67,11 @@ end
 
 function VolcanoBadgeQuest:CinnabarGym()
 	if not hasItem("Volcano Badge") then
-		if isNpcOnCell(6,7) then
-			return talkToNpcOnCell(6,7)
+		if isNpcOnCell(5,7) then
+			-- prompt mew before talking to blaine?
+			return moveToCell(6,11)
+		elseif isNpcOnCell(6,7) then
+			return talkToNpcOnCell(6,7) -- blaine moves here after prompting mew?
 		else
 			return moveToMap("Cinnabar Gym B1F")
 		end

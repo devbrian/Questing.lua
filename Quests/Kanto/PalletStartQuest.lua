@@ -47,7 +47,7 @@ end
 
 function PalletStartQuest:PlayerBedroomPallet()
 	if getTeamSize() == 0 or hasItem("Pokeball") then
-		-- moveToMap("Player House Pallet")
+		moveToMap("Player House Pallet")
 	else
 		if isNpcOnCell(7,3) then
 			talkToNpcOnCell(7,3)
@@ -62,7 +62,7 @@ end
 
 function PalletStartQuest:PlayerHousePallet()
 	if getTeamSize() == 0 or hasItem("Pokeball") then
-		return moveToMap("Link")
+		return moveToMap("Pallet Town")
 	else
 		if self.dialogs.mom.state == false then
 			return talkToNpcOnCell(7,6)
