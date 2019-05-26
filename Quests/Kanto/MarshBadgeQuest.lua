@@ -65,7 +65,7 @@ function MarshBadgeQuest:Route8StopHouse()
       and (self:needPokecenter() or self:isTrainingOver())
 
   --updated link name
-  then return moveToMap("Link") end
+  then return moveToCell(0,6) end
 
   return moveToMap("Route 8")
 end
@@ -136,7 +136,7 @@ function MarshBadgeQuest:SaffronGym()
       return moveToCell(18,20)
     elseif game.inRectangle(1,16,7,17) then
       return moveToCell(2,17)
-    elseif game.inRectangle(17,14,23,6) then
+    elseif game.inRectangle(17,2,23,6) then
       return moveToCell(18,6)
     elseif game.inRectangle(1,2,3,6) then
       return moveToCell(2,6)

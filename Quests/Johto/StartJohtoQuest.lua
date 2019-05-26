@@ -34,7 +34,8 @@ end
 
 function StartJohtoQuest:NewBarkTown()
 	if getTeamSize() == 0 then
-		return moveToMap("Professor Elms Lab")
+		-- return moveToMap("Professor Elms Lab") -- need to implement Johto pathfinder
+		return moveToCell(19,12)
 	else
 		return moveToMap("Route 29")
 	end
@@ -52,7 +53,7 @@ function StartJohtoQuest:ProfessorElmsLab()
 	if getTeamSize() == 0 then
 		return talkToNpcOnCell(10,6) --Totodile can Learn Surf and Cut, is perfect for questing
 	else
-		return moveToMap("New Bark Town")
+		return moveToMap(4,14)
 	end
 end
 

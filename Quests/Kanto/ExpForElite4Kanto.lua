@@ -102,11 +102,11 @@ function ExpForElite4Kanto:canBuyReviveItems()
 end
 
 function ExpForElite4Kanto:Route22()
-	if isNpcOnCell(10,8) then
-		return talkToNpcOnCell(10,8)
+	if isNpcOnCell(16,8) then
+		return talkToNpcOnCell(16,8)
 	else
 		--Bad named map: "Pokemon League Reception Gate"
-		return moveToMap("Link")
+		return moveToCell(9,8)
 	end
 end
 

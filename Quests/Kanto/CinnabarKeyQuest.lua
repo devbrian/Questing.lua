@@ -1,4 +1,4 @@
--- Copyright ï¿½ 2016 g0ld <g0ld@tuta.io>
+-- Copyright © 2016 g0ld <g0ld@tuta.io>
 -- This work is free. You can redistribute it and/or modify it under the
 -- terms of the Do What The Fuck You Want To Public License, Version 2,
 -- as published by Sam Hocevar. See the COPYING file for more details.
@@ -104,7 +104,7 @@ function CinnabarKeyQuest:CinnabarmansionB1F()
 			end
 		end
 	else
-		return moveToCell(36,31) --Cinnabar mansion 1
+		return moveToCell(36,30) --Cinnabar mansion 1
 	end
 end
 
