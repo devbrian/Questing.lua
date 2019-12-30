@@ -78,8 +78,8 @@ function PalletStartQuest:PalletTown()
 	elseif not hasItem("Pokeball") then
 		return moveToMap("Player House Pallet")
 	else
-		if isNpcVisible("#133") then
-			return talkToNpc("#133")
+		if isNpcVisible("#133 Eevee") then
+			return talkToNpc("#133 Eevee")
 		elseif isNpcVisible("Jackson") then
 			return talkToNpc("Jackson")
 		else
